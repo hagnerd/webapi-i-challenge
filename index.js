@@ -25,7 +25,7 @@ server.post("/api/users", (req, res) => {
         .then(user => {
           if (!user) {
             res.status(404).json({
-              error: "User not found"
+              error: "User not found."
             });
             return;
           }
@@ -43,6 +43,20 @@ server.post("/api/users", (req, res) => {
     .catch(() => {
       res.status(500).json({
         error: "There was an error while saving the user to the database"
+      });
+    });
+});
+
+server.get("/api/users", (_req, res) => {
+  db.find()
+    .then(users => {
+      res.json({
+        users
+      });
+    })
+    .catch(() => {
+      res.status(500).json({
+        error: "The user information could not be retrieved."
       });
     });
 });
