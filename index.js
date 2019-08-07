@@ -109,6 +109,45 @@ server.delete("/api/users/:id", (req, res) => {
     });
 });
 
+server.put("/api/users/:id", (req, res) => {
+  const { id } = req.params;
+  const { name, bio } = req.body;
+
+  if (!name || !bio) {
+    res.status(400).json({
+      errorMessage: "Please provide name and bio for the user."
+    });
+    return;
+  }
+
+  db.update(id, { name, bio })
+    .then(id => {
+      if (!id) {
+        res.status(404).json({
+          message: "The user with the specified ID does not exist."
+        });
+        return;
+      }
+
+      db.findById(id)
+        .then(user => {
+          res.status(200).json({
+            user
+          });
+        })
+        .catch(() => {
+          res.status(500).json({
+            error: "The user information could not be modified."
+          });
+        });
+    })
+    .catch(() => {
+      res.status(500).json({
+        error: "The user information could not be modified."
+      });
+    });
+});
+
 server.listen(4000, () => {
   console.log(`The server is listening on port 4000`);
 });
