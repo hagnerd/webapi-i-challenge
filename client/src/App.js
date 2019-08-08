@@ -1,10 +1,12 @@
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { useFetch } from "./hooks";
 
 import Home from "./pages/home";
 import NewUserForm from "./pages/new-user-form";
 import EditUserForm from "./pages/edit-user-form";
+
+import Navigation from "./components/navigation";
 
 function App() {
   const { data, loading, error, refetch } = useFetch({
@@ -16,16 +18,7 @@ function App() {
 
   return (
     <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/new">New</Link>
-          </li>
-        </ul>
-      </nav>
+      <Navigation />
       <Switch>
         <Route
           path="/new"

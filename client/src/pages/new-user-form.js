@@ -5,7 +5,7 @@ import UserForm from "../components/user-form";
 
 export default function NewUserForm({ refetch, history }) {
   return (
-    <div className="mx-auto md:w-full lg:w-1/2">
+    <div className="mx-auto max-w-6xl w-10/12">
       <UserForm
         formTitle="Create User Form"
         submitText="Create User"
