@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 
 const db = require("./data/db");
 
 const server = express();
 
 server.use(express.json());
+server.use(cors());
 
 server.post("/api/users", (req, res) => {
   const { name, bio } = req.body;
