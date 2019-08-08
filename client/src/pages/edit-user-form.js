@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import UserForm from "../components/user-form";
+import Title from "../components/title";
 
 export default function EditUserForm({ match, history, users, refetch }) {
   const { id } = match.params;
@@ -13,8 +14,8 @@ export default function EditUserForm({ match, history, users, refetch }) {
 
   return (
     <div className="mx-auto max-w-6xl w-10/12">
+      <Title>Edit User Form</Title>
       <UserForm
-        formTitle="Update User Form"
         submitText="Update User"
         {...user}
         onSubmit={async values => {
